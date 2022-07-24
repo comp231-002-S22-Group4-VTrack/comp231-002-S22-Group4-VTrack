@@ -1,15 +1,13 @@
-import {Component, Input, OnInit} from '@angular/core';
-import {Role} from '../../../models/enums/role.enum';
-import {getUserDetails} from '../../Functions/getUserDetails';
-import {Router} from '@angular/router';
+import { Component, Input, OnInit } from '@angular/core';
+import { Role } from '../../../models/enums/role.enum';
+import { getUserDetails } from '../../Functions/getUserDetails';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-navigation-bar',
   templateUrl: './navigation-bar.component.html',
-  styleUrls: ['./navigation-bar.component.scss']
 })
 export class NavigationBarComponent implements OnInit {
-  @Input() public roleInput: Role;
   public role = Role;
   public isLoggedIn = false;
   constructor(private router: Router) {
@@ -18,9 +16,7 @@ export class NavigationBarComponent implements OnInit {
     }
   }
 
-  ngOnInit() {
-    console.log(this.roleInput);
-  }
+  ngOnInit() {}
 
   logout() {
     sessionStorage.clear();
@@ -30,5 +26,4 @@ export class NavigationBarComponent implements OnInit {
       this.router.navigate(['/']);
     }
   }
-
 }

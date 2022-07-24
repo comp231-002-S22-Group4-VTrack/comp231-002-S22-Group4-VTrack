@@ -1,22 +1,31 @@
-import {Component, EventEmitter, Input, OnDestroy, OnInit, Output, ViewChild} from '@angular/core';
-import {ActivatedRoute, Router} from '@angular/router';
-import {MatSort} from '@angular/material/sort';
-import {MatTableDataSource} from '@angular/material/table';
-import {Role} from '../../../models/enums/role.enum';
-import {MatDialog, MatDialogRef} from '@angular/material/dialog';
-import {SubSink} from 'subsink';
-import {GenericTwoOptionDialogComponent} from '../generic-two-option-dialog/generic-two-option-dialog.component';
-import {GenericTwoOptionDialogData} from '../../../models/generic-two-option-dialog-data';
-import {Appointment} from '../../../models/appointment.model';
-import {AppointmentService} from 'src/app/services/appointment/appointment.service';
-import {AppointmentType} from 'src/app/models/enums/appointment.enum';
+import {
+  AfterViewInit,
+  Component,
+  EventEmitter,
+  Input,
+  OnDestroy,
+  OnInit,
+  Output,
+  ViewChild,
+} from '@angular/core';
+import { ActivatedRoute, Router } from '@angular/router';
+import { MatSort } from '@angular/material/sort';
+import { MatTableDataSource } from '@angular/material/table';
+import { Role } from '../../../models/enums/role.enum';
+import { MatDialog, MatDialogRef } from '@angular/material/dialog';
+import { SubSink } from 'subsink';
+import { GenericTwoOptionDialogComponent } from '../generic-two-option-dialog/generic-two-option-dialog.component';
+import { GenericTwoOptionDialogData } from '../../../models/generic-two-option-dialog-data';
+import { Appointment } from '../../../models/appointment.model';
+import { AppointmentService } from 'src/app/services/appointment/appointment.service';
+import { AppointmentType } from 'src/app/models/enums/appointment.enum';
+import { map, concatMap } from 'rxjs';
+import { getUserDetails } from '../../Functions/getUserDetails';
 
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
-  styleUrls: ['./appointment.component.scss']
 })
-
 export class AppointmentComponent implements OnInit, AfterViewInit, OnDestroy {
   @ViewChild(MatSort) public sort: MatSort;
   @Input() public roleInput: Role;
@@ -33,80 +42,110 @@ export class AppointmentComponent implements OnInit, AfterViewInit, OnDestroy {
   public dataSource: MatTableDataSource<Appointment>;
   private subSink: SubSink;
 
-  constructor(private router: Router, private activatedRoute: ActivatedRoute, public dialog: MatDialog, private appointmentService: AppointmentService) {
+  constructor(
+    private router: Router,
+    private activatedRoute: ActivatedRoute,
+    public dialog: MatDialog,
+    private appointmentService: AppointmentService
+  ) {
     this.subSink = new SubSink();
-    this.displayedColumns = ['patientName', 'appointmentDateTime', 'practitionerName', 'status', 'vaccine', 'comments', 'actions'];
+    this.displayedColumns = [
+      'patientName',
+      'appointmentDateTime',
+      'practitionerName',
+      'status',
+      'vaccine',
+      'comments',
+      'actions',
+    ];
     this.dataSource = new MatTableDataSource<Appointment>();
   }
 
   public ngOnInit() {
-    this.showActionDelete = this.roleInput === Role.PATIENT || this.roleInput === Role.MEDICAL_ADMIN || this.roleInput === Role.MEDICAL_STAFF;
+    this.showActionDelete =
+      this.roleInput === Role.PATIENT ||
+      this.roleInput === Role.MEDICAL_ADMIN ||
+      this.roleInput === Role.MEDICAL_STAFF;
 
-    const appointment = this.router.getCurrentNavigation()?.extras?.state?.appointment;
+    const appointment =
+      this.router.getCurrentNavigation()?.extras?.state?.appointment;
   }
 
   /*
-  * When the component view is initialized the sort
-  * for the table is added to the datasource
-  */
+   * When the component view is initialized the sort
+   * for the table is added to the datasource
+   */
   public ngAfterViewInit() {
     this.dataSource.sort = this.sort;
     const patientId = getUserDetails().id;
 
-    this.activatedRoute.paramMap.pipe(
-      map(() => window.history.state),
-      concatMap(res => this.appointmentService.getAppointmentsById(res.appointment.payload.id)),
-    )
-    .subscribe(appt=>{
-      if (appt) {
+    this.activatedRoute.paramMap
+      .pipe(
+        map(() => window.history.state),
+        concatMap((res) =>
+          this.appointmentService.getAppointmentsById(
+            res.appointment.payload.id
+          )
+        )
+      )
+      .subscribe((appt) => {
         if (appt) {
-          this.openViewAppointmentDialog(appt);
+          if (appt) {
+            this.openViewAppointmentDialog(appt);
+          }
         }
-      }
-    })
+      });
   }
 
   /*
-  * When the component is destroyed the observables
-  * in the subsink are unsubscribed to prevent memory leaks
-  */
+   * When the component is destroyed the observables
+   * in the subsink are unsubscribed to prevent memory leaks
+   */
   public ngOnDestroy(): void {
     this.subSink.unsubscribe();
   }
 
   /*
-  * Emit a modify even to the parent component to refresh the table
-  */
+   * Emit a modify even to the parent component to refresh the table
+   */
   emitModify(dialogRef: MatDialogRef<any>) {
-    this.subSink.add(dialogRef.afterClosed().subscribe(res => {
+    this.subSink.add(
+      dialogRef.afterClosed().subscribe((res) => {
         this.modified.emit(true);
-    }));
+      })
+    );
   }
 
-
   /*
-  * When the view button is clicked the generic dialog is opened
-  */
+   * When the view button is clicked the generic dialog is opened
+   */
   public openCancelVaccinationDialog(element: Appointment): void {
     const dialogTitle = 'CANCEL APPOINTMENT';
-    const dialogDescription = 'Are you sure you would like to cancel the selected appointment (enter appoint number here or something), this action cannot be undone';
+    const dialogDescription =
+      'Are you sure you would like to cancel the selected appointment (enter appoint number here or something), this action cannot be undone';
     const dialogRef = this.dialog.open(GenericTwoOptionDialogComponent, {
       panelClass: 'dialog-panel-class',
       width: '650px',
       height: '350px',
       disableClose: true,
       autoFocus: false,
-      data: new GenericTwoOptionDialogData(dialogTitle, dialogDescription)
+      data: new GenericTwoOptionDialogData(dialogTitle, dialogDescription),
     });
 
     // get call back data on close
-    this.subSink.add(dialogRef.afterClosed().subscribe(res => {
-      if (res) {
-        element.type = AppointmentType.CANCELLED;
-        this.subSink.add(this.appointmentService.cancelAppointment(element).subscribe(declineAppointmentRes => {
-          console.log('Check', declineAppointmentRes);
-        }));
-      }
-    }));
+    this.subSink.add(
+      dialogRef.afterClosed().subscribe((res) => {
+        if (res) {
+          element.type = AppointmentType.CANCELLED;
+          this.subSink.add(
+            this.appointmentService
+              .cancelAppointment(element)
+              .subscribe((declineAppointmentRes) => {
+                console.log('Check', declineAppointmentRes);
+              })
+          );
+        }
+      })
+    );
   }
 }
