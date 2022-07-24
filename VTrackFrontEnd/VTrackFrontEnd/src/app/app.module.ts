@@ -3,16 +3,30 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
+import { HomepageComponent } from './pages/homepage/homepage.component';
+import { SigninComponent } from './pages/signin/signin.component';
+import { MaterialAngularModule } from './material-angular.module';
+import { SharedModule } from './shared/shared.module';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    HomepageComponent,
+    SigninComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule
   ],
-  providers: [],
+  providers: [
+    HttpClientModule,
+    BrowserModule,
+    AppRoutingModule,
+    MaterialAngularModule,
+    SharedModule,
+    RouterModule,
+    ReactiveFormsModule,
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
