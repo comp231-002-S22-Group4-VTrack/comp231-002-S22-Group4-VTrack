@@ -11,7 +11,7 @@ import { getUserDetails } from '../../shared/Functions/getUserDetails';
   templateUrl: './signin.component.html',
 })
 export class SigninComponent implements OnInit, OnDestroy {
-  signInForm: FormGroup;
+  signInForm: any;
   private subSink: SubSink;
   public provincesEnum: Object;
 

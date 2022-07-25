@@ -26,13 +26,12 @@ import { getUserDetails } from '../../Functions/getUserDetails';
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
 })
-export class AppointmentComponent implements OnInit, AfterViewInit, OnDestroy {
+export class AppointmentComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) public sort: MatSort;
   @Input() public roleInput: Role;
   @Output() modified: EventEmitter<boolean> = new EventEmitter<boolean>();
 
-  @Input()
-  set tableDataSource(data: MatTableDataSource<Appointment>) {
+  @Input() set tableDataSource(data: MatTableDataSource<Appointment>) {
     this.dataSource = data;
   }
 
@@ -63,38 +62,10 @@ export class AppointmentComponent implements OnInit, AfterViewInit, OnDestroy {
 
   public ngOnInit() {
     this.showActionDelete =
-      this.roleInput === Role.PATIENT ||
-      this.roleInput === Role.MEDICAL_ADMIN ||
-      this.roleInput === Role.MEDICAL_STAFF;
+      this.roleInput === Role.PATIENT || this.roleInput === Role.MEDICAL_STAFF;
 
     const appointment =
-      this.router.getCurrentNavigation()?.extras?.state?.appointment;
-  }
-
-  /*
-   * When the component view is initialized the sort
-   * for the table is added to the datasource
-   */
-  public ngAfterViewInit() {
-    this.dataSource.sort = this.sort;
-    const patientId = getUserDetails().id;
-
-    this.activatedRoute.paramMap
-      .pipe(
-        map(() => window.history.state),
-        concatMap((res) =>
-          this.appointmentService.getAppointmentsById(
-            res.appointment.payload.id
-          )
-        )
-      )
-      .subscribe((appt) => {
-        if (appt) {
-          if (appt) {
-            this.openViewAppointmentDialog(appt);
-          }
-        }
-      });
+      this.router.getCurrentNavigation()?.extras?.state?.['appointment'];
   }
 
   /*

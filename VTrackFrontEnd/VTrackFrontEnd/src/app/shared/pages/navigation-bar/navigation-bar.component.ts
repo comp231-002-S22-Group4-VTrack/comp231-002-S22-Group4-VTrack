@@ -8,6 +8,7 @@ import { Router } from '@angular/router';
   templateUrl: './navigation-bar.component.html',
 })
 export class NavigationBarComponent implements OnInit {
+  @Input() roleInput: any;
   public role = Role;
   public isLoggedIn = false;
   constructor(private router: Router) {
