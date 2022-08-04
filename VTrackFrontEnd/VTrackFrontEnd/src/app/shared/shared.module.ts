@@ -4,21 +4,26 @@ import {NavigationBarComponent} from './pages/navigation-bar/navigation-bar.comp
 import {MaterialAngularModule} from '../material-angular.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
+import { HttpClientModule } from '@angular/common/http';
 
 @NgModule({
   declarations: [
     NavigationBarComponent,
   ],
   providers: [
+    MaterialAngularModule,
+    HttpClientModule,
   ],
   exports: [
     NavigationBarComponent,
+    MaterialAngularModule
   ],
   imports: [
     CommonModule,
     MaterialAngularModule,
     ReactiveFormsModule,
     NgxMaterialTimepickerModule,
+    HttpClientModule,
   ]
 })
 

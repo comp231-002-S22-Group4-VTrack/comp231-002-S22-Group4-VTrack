@@ -3,9 +3,8 @@ export class Vaccine {
                 public name: string = '',
                 public isRationed: boolean = false,
                 public manufacturer: string = '',
-                public shelfLife: number = null,
+                public shelfLife: number | null = null,
                 public approvedProvinces: string = '',
-                public vaccineId: number = null) {
+                public vaccineId: number | null = null) {
     }
   }
-  

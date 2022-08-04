@@ -3,7 +3,7 @@
 <div class="row mb-3 mx-0 justify-content-center"><h2>Sign In</h2></div>
 <div class="row justify-content-center">
 
-  <form [formGroup]="this.signInForm" class="p-5" (ngSubmit)="this.submitSignIn()">
+  <form class="p-5" (ngSubmit)="this.submitSignIn()" [formGroup]="this.signInForm">
     <div class="row mb-3 mx-0 justify-content-center"><br>
 
 

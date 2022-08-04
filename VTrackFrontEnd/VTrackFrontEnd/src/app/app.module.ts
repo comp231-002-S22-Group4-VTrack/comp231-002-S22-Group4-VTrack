@@ -3,16 +3,16 @@ import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
-import { HomepageComponent } from './pages/homepage/homepage.component';
-import { SigninComponent } from './pages/signin/signin.component';
 import { MaterialAngularModule } from './material-angular.module';
 import { SharedModule } from './shared/shared.module';
 import { HttpClientModule } from '@angular/common/http';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { RouterModule } from '@angular/router';
+import { CommonModule } from '@angular/common';
+import { PagesModule } from './pages/pages.module';
 
 @NgModule({
-  declarations: [AppComponent, HomepageComponent, SigninComponent],
+  declarations: [AppComponent],
   imports: [BrowserModule, AppRoutingModule],
   providers: [
     HttpClientModule,
@@ -23,7 +23,16 @@ import { RouterModule } from '@angular/router';
     RouterModule,
     FormsModule,
     ReactiveFormsModule,
+    CommonModule,
+    PagesModule,
   ],
   bootstrap: [AppComponent],
+  exports: [
+    CommonModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MaterialAngularModule,
+    HttpClientModule,
+  ],
 })
 export class AppModule {}

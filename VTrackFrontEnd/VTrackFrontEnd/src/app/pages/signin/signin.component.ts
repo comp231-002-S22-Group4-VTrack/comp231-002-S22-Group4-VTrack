@@ -11,7 +11,10 @@ import { getUserDetails } from '../../shared/Functions/getUserDetails';
   templateUrl: './signin.component.html',
 })
 export class SigninComponent implements OnInit, OnDestroy {
-  signInForm: any;
+  signInForm: FormGroup = this.formBuilder.group({
+    email: ['', Validators.required],
+    password: ['', Validators.required],
+  });
   private subSink: SubSink;
   public provincesEnum: Object;
 
@@ -25,21 +28,12 @@ export class SigninComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit(): void {
-    this.signInForm = this.createSignupForm();
   }
 
   public ngOnDestroy(): void {
     this.subSink.unsubscribe();
   }
-  /**
-   * Create sign up form will do the validation for email and password.
-   * */
-  createSignupForm(): FormGroup {
-    return this.formBuilder.group({
-      email: ['', Validators.required],
-      password: ['', Validators.required],
-    });
-  }
+
   /**
    * Submit Sign In will submit the signin form data and route the user to the appropriate dashboard page
    * */

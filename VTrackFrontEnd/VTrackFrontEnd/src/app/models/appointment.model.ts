@@ -11,11 +11,11 @@ export class Appointment {
               public vaccine: Vaccine = new Vaccine(),
               public vaccineDose: string = '',
               public reason: string = '',
-              public preferredDate: Date = null,
-              public preferredTime: Date = null,
-              public startTime: Date = null,
-              public endTime: Date = null,
-              public type: AppointmentType = null,
+              public preferredDate: Date,
+              public preferredTime: Date,
+              public startTime: Date,
+              public endTime: Date,
+              public type: AppointmentType,
               public patient: Patient = new Patient()) {
   }
 }
