@@ -4,8 +4,8 @@ import {Address} from './address.model';
 
 export class Patient {
   constructor(public _id: string = '',
-              public appointments: Appointment[] | null = null,
-              public account: Account| null = null,
+              public appointments: Appointment[] =[],
+              public account?: Account,
               public accountId = '',
               public firstName = '',
               public lastName = '',

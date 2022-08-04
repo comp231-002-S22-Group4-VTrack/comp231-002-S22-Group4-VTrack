@@ -19,8 +19,9 @@ import { GenericTwoOptionDialogData } from '../../../models/generic-two-option-d
 import { Appointment } from '../../../models/appointment.model';
 import { AppointmentService } from 'src/app/services/appointment/appointment.service';
 import { AppointmentType } from 'src/app/models/enums/appointment.enum';
-import { map, concatMap } from 'rxjs';
-import { getUserDetails } from '../../Functions/getUserDetails';
+import { CreateAppointmentDialogComponent, CreateAppointmentDialogModel } from './create-appointment-dialog/create-appointment-dialog.component';
+import { UpdateAppointmentVaccineDetailsDialogComponent } from './update-appointment-vaccine-details-dialog/update-appointment-vaccine-details-dialog.component';
+import { ViewAppointmentDialogComponent } from './view-appointment-dialog/view-appointment-dialog.component';
 
 @Component({
   selector: 'app-appointment',
@@ -119,4 +120,89 @@ export class AppointmentComponent implements OnInit, OnDestroy {
       })
     );
   }
+
+  /*
+* When the edit button is clicked this method evaluates the roleInput
+* and opens the appropriate dialog
+*/
+  public openModifyAppointmentDetailsDialog(element: Appointment) {
+    let dialogRef;
+    console.log(this.roleInput);
+
+    switch (this.roleInput) {
+
+      case Role.MEDICAL_STAFF:
+        dialogRef = this.dialog.open(UpdateAppointmentVaccineDetailsDialogComponent, {
+          panelClass: 'dialog-panel-class',
+          width: '650px',
+          height: 'auto',
+          disableClose: true,
+          autoFocus: false,
+          restoreFocus: false,
+          data: element
+        });
+        dialogRef.afterClosed().subscribe(result => {
+          console.log(result);
+          if (result) {
+            this.subSink.add(this.appointmentService.getAppointmentsByPatient().subscribe(res => {
+              console.log(res);
+              // @ts-ignore
+              this.dataSource = res;
+            }, error => {
+              console.log(error);
+            }));
+          }
+        });
+        break;
+
+      case Role.PATIENT:
+        dialogRef = this.dialog.open(CreateAppointmentDialogComponent, {
+          panelClass: 'dialog-panel-class',
+          width: '650px',
+          height: 'auto',
+          disableClose: true,
+          autoFocus: false,
+          restoreFocus: false,
+          data: { appointment: element, role: this.roleInput } as CreateAppointmentDialogModel
+        });
+        break;
+      default:
+        break;
+    }
+
+
+    if (dialogRef) {
+      this.emitModify(dialogRef);
+    }
+  }
+
+  /*
+  * When the view button is clicked the view appointment dialog is opened
+  */
+  public openViewAppointmentDialog(element: Appointment) {
+    console.log(element);
+    const dialogRef = this.dialog.open(ViewAppointmentDialogComponent, {
+      panelClass: 'dialog-panel-class',
+      disableClose: true,
+      autoFocus: false,
+      data: element,
+    });
+
+    this.emitModify(dialogRef);
+  }
+
+  /*
+  * When the view button is clicked the decline appointment dialog is opened
+  */
+  public openDeclineAppointmentRequestDialog(element: Appointment): void {
+    this.dialog.open(DeclineRequestedAppointmentDialogComponent, {
+      panelClass: 'dialog-panel-class',
+      disableClose: false,
+      autoFocus: false,
+      height: '400px',
+      width: '650px',
+      data: element
+    });
+  }
+
 }

@@ -8,11 +8,13 @@ import { HomepageComponent } from './homepage/homepage.component';
 import { SigninComponent } from './signin/signin.component';
 import { MedicalStaffContainerModule } from './medical-staff-container/medical-staff-container.module';
 import { HttpClientModule } from '@angular/common/http';
+import { CheckInComponent } from './check-in/check-in.component';
 
 @NgModule({
   declarations: [
     HomepageComponent,
-    SigninComponent
+    SigninComponent,
+    CheckInComponent
   ],
   providers: [
     MedicalStaffContainerModule,
@@ -22,7 +24,8 @@ import { HttpClientModule } from '@angular/common/http';
   exports: [
     HomepageComponent,
     SigninComponent,
-    MaterialAngularModule
+    MaterialAngularModule,
+    CheckInComponent
   ],
   imports: [
     HttpClientModule,

@@ -1,0 +1,52 @@
+<div class="row no-gutters justify-content-between align-items-center mb-3">
+  <div></div>
+  <h4 class="m-0">Update Appointment Vaccine Details</h4>
+  <div></div>
+</div>
+<div class="row justify-content-center">
+  Appointment #:
+</div>
+<div class="row justify-content-center">
+  {{appointmentDetails?._id}}
+</div>
+<div class="ml-5">
+  <div class="row">
+    <div class="col-6">
+      <div class="row">
+        <div class="col-10">
+          <mat-form-field appearance="outline">
+            <mat-label>Vaccine Dose</mat-label>
+            <mat-select [formControl]="dose">
+              <mat-option value="Shot #1">Shot #1</mat-option>
+              <mat-option value="Shot #2">Shot #2</mat-option>
+              <mat-option value="Shot #3">Shot #3</mat-option>
+            </mat-select>
+            <mat-error>Vaccine Dose is <strong>Required</strong></mat-error>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+    <div class="col-6">
+      <div class="row">
+        <div class="col-10">
+          <mat-form-field appearance="outline">
+            <mat-label>Vaccine Type</mat-label>
+            <mat-select [formControl]="type">
+              <mat-option *ngFor="let vaccine of vaccines" [value]="vaccine._id">{{vaccine.name}}</mat-option>
+            </mat-select>
+          </mat-form-field>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="row ">
+  <div class="col text-center">
+    <button mat-raised-button type="submit" class="mr-5 submitButton"
+            (click)="save()">Save
+    </button>
+    <button mat-raised-button type="button" class="mr-5 ml-2 submitButton"
+            [mat-dialog-close]="false">Cancel
+    </button>
+  </div>
+</div>

@@ -6,7 +6,7 @@ export class MedicalStaff extends Account {
   override firstName: string = '';
   lastname: string = '';
   constructor(public _id: string|null = null,
-              public account: Account| null = null,
+              public account?: Account,
               public clinic: Clinic = new Clinic()) {
     super();
   }

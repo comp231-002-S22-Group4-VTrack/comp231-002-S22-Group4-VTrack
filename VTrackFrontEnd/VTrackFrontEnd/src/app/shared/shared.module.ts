@@ -5,10 +5,16 @@ import {MaterialAngularModule} from '../material-angular.module';
 import {ReactiveFormsModule} from '@angular/forms';
 import {NgxMaterialTimepickerModule} from 'ngx-material-timepicker';
 import { HttpClientModule } from '@angular/common/http';
+import { CreateAppointmentDialogComponent } from './pages/appointment/create-appointment-dialog/create-appointment-dialog.component';
+import { ModifyAppointmentDetailsDialogComponent } from './pages/appointment/modify-appointment-details-dialog/modify-appointment-details-dialog.component';
+import { UpdateAppointmentVaccineDetailsDialogComponent } from './pages/appointment/update-appointment-vaccine-details-dialog/update-appointment-vaccine-details-dialog.component';
 
 @NgModule({
   declarations: [
     NavigationBarComponent,
+    ModifyAppointmentDetailsDialogComponent,
+    CreateAppointmentDialogComponent,
+    UpdateAppointmentVaccineDetailsDialogComponent,
   ],
   providers: [
     MaterialAngularModule,
@@ -16,7 +22,10 @@ import { HttpClientModule } from '@angular/common/http';
   ],
   exports: [
     NavigationBarComponent,
-    MaterialAngularModule
+    MaterialAngularModule,
+    ModifyAppointmentDetailsDialogComponent,
+    CreateAppointmentDialogComponent,
+    UpdateAppointmentVaccineDetailsDialogComponent,
   ],
   imports: [
     CommonModule,

@@ -8,15 +8,18 @@ import { MedicalStaffContainerComponent } from './medical-staff-container.compon
 import { MedicalStaffDashboardComponent } from './medical-staff-dashboard/medical-staff-dashboard.component';
 import { MedicalStaffContainerRoutingModule } from './medical-staff-container-routing.module';
 import { HttpClientModule } from '@angular/common/http';
+import { DeclineRequestedAppointmentDialogComponent } from './decline-requested-appointment-dialog/decline-requested-appointment-dialog.component';
 
 
 @NgModule({
   declarations: [
     MedicalStaffContainerComponent,
-    MedicalStaffDashboardComponent
+    MedicalStaffDashboardComponent,
+    DeclineRequestedAppointmentDialogComponent
   ],
   exports: [
-    MaterialAngularModule
+    MaterialAngularModule,
+    DeclineRequestedAppointmentDialogComponent
   ],
   imports: [
     CommonModule,
