@@ -44,6 +44,7 @@ export class SigninComponent implements OnInit, OnDestroy {
       this.subSink.add(
         this.patientService.signIn(this.signInForm.value).subscribe(
           (res) => {
+            console.log('res: ', res);
             sessionStorage.setItem('signedInUser', JSON.stringify(res));
             switch (getUserDetails()?.type) {
               case 'MEDICAL_STAFF': {
@@ -55,6 +56,7 @@ export class SigninComponent implements OnInit, OnDestroy {
                 break;
               }
             }
+            console.log('type: ', getUserDetails()?.type);
           },
           (error) => {
             alert(error.error.message);
