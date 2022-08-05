@@ -11,7 +11,6 @@ const MedicalStaffSchema = new Schema({
         ref: 'Clinic'
     }
 });
-// Configure the 'HealthPractionerSchema' to use getters and virtuals when transforming to JSON
 MedicalStaffSchema.set("toJSON", {
     getters: true,
     virtuals: true,

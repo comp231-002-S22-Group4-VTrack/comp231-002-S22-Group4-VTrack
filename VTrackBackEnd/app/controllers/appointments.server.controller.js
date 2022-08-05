@@ -249,7 +249,7 @@ function findIfPatientExistsByPatientId(patientId, res) {
     });
 }
 
-/** checking if an health practitioner already exists with that health practitioner Id */
+/** checking if an medical staff already exists with that medical staff Id */
 function findIfMedicalStaffExistsByPractitionerId(medicalStaffId, res) {
     return new Promise(resolve => {
         Account.findById(medicalStaffId, (err, practitioner) => {
@@ -259,7 +259,7 @@ function findIfMedicalStaffExistsByPractitionerId(medicalStaffId, res) {
                 if (practitioner) {
                     resolve(practitioner);
                 } else {
-                    res.status(404).send('Health Practitioner with the given Id Not found.').end();
+                    res.status(404).send('medical staff with the given Id Not found.').end();
                 }
             }
         });

@@ -76,7 +76,7 @@ exports.getMedicalStaffsByClinicId = (req, res, next) => {
     const clinic = res.locals.clinic;
     Account.find({clinic: clinic?._id, type: "MEDICAL_STAFF"}, (err, medicalStaffs) => {
         if (err) {
-            return res.status(500).send({message: "There was an Error In Getting the Health Practitioners."}).end();
+            return res.status(500).send({message: "There was an Error In Getting the medical staffs."}).end();
         }
 
         return res.status(200).send(medicalStaffs).end();
