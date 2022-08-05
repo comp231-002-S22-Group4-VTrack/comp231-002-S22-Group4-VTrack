@@ -8,6 +8,12 @@ import { HttpClientModule } from '@angular/common/http';
 import { CreateAppointmentDialogComponent } from './pages/appointment/create-appointment-dialog/create-appointment-dialog.component';
 import { ModifyAppointmentDetailsDialogComponent } from './pages/appointment/modify-appointment-details-dialog/modify-appointment-details-dialog.component';
 import { UpdateAppointmentVaccineDetailsDialogComponent } from './pages/appointment/update-appointment-vaccine-details-dialog/update-appointment-vaccine-details-dialog.component';
+import { AppointmentComponent } from './pages/appointment/appointment.component';
+import { GenericTwoOptionDialogComponent } from './pages/generic-two-option-dialog/generic-two-option-dialog.component';
+import { ViewAppointmentDialogComponent } from './pages/appointment/view-appointment-dialog/view-appointment-dialog.component';
+import { RolePipe } from './pipes/role.pipe';
+import { PatientFullNamePipe } from './pipes/patient.pipe';
+import { PasswordPipe } from './pipes/password/password.pipe';
 
 @NgModule({
   declarations: [
@@ -15,6 +21,12 @@ import { UpdateAppointmentVaccineDetailsDialogComponent } from './pages/appointm
     ModifyAppointmentDetailsDialogComponent,
     CreateAppointmentDialogComponent,
     UpdateAppointmentVaccineDetailsDialogComponent,
+    AppointmentComponent,
+    GenericTwoOptionDialogComponent,
+    ViewAppointmentDialogComponent,
+    RolePipe,
+    PatientFullNamePipe,
+    PasswordPipe
   ],
   providers: [
     MaterialAngularModule,
@@ -26,6 +38,12 @@ import { UpdateAppointmentVaccineDetailsDialogComponent } from './pages/appointm
     ModifyAppointmentDetailsDialogComponent,
     CreateAppointmentDialogComponent,
     UpdateAppointmentVaccineDetailsDialogComponent,
+    AppointmentComponent,
+    GenericTwoOptionDialogComponent,
+    ViewAppointmentDialogComponent,
+    PatientFullNamePipe,
+    RolePipe,
+    PasswordPipe
   ],
   imports: [
     CommonModule,

@@ -22,6 +22,7 @@ import { AppointmentType } from 'src/app/models/enums/appointment.enum';
 import { CreateAppointmentDialogComponent, CreateAppointmentDialogModel } from './create-appointment-dialog/create-appointment-dialog.component';
 import { UpdateAppointmentVaccineDetailsDialogComponent } from './update-appointment-vaccine-details-dialog/update-appointment-vaccine-details-dialog.component';
 import { ViewAppointmentDialogComponent } from './view-appointment-dialog/view-appointment-dialog.component';
+import { DeclineRequestedAppointmentDialogComponent } from 'src/app/pages/medical-staff-container/decline-requested-appointment-dialog/decline-requested-appointment-dialog.component';
 
 @Component({
   selector: 'app-appointment',
