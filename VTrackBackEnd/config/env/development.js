@@ -3,7 +3,7 @@ module.exports = {
   //To sign the session identifier, use a secret string
   sessionSecret: "developmentSessionSecret",
   frontendDomain: "http://localhost:4200",
-  db: "mongodb://Admin:Rosa2745@ac-6fmnkek-shard-00-00.odpzivr.mongodb.net:27017,ac-6fmnkek-shard-00-01.odpzivr.mongodb.net:27017,ac-6fmnkek-shard-00-02.odpzivr.mongodb.net:27017/?ssl=true&replicaSet=atlas-mmdsz6-shard-0&authSource=admin&retryWrites=true&w=majority?directConnection=true",
+  db: "mongodb://Admin:Rosa2745@ac-6fmnkek-shard-00-00.odpzivr.mongodb.net:27017,ac-6fmnkek-shard-00-01.odpzivr.mongodb.net:27017,ac-6fmnkek-shard-00-02.odpzivr.mongodb.net:27017/?ssl=true&replicaSet=atlas-mmdsz6-shard-0&authSource=admin&retryWrites=true&w=majority",
   // local database
   // db: "mongodb://localhost/vacctrax-local",
   sendgridApiKey:
@@ -19,6 +19,11 @@ module.exports = {
   // new templte from new account due to suspension of older account
   sendgridTemplateId: "d-6fcdf2b1b5bb4030831560fa3dea295b",
 };
+
+
+
+
+
 
 
 
