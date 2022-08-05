@@ -9,12 +9,17 @@ import { SigninComponent } from './signin/signin.component';
 import { MedicalStaffContainerModule } from './medical-staff-container/medical-staff-container.module';
 import { HttpClientModule } from '@angular/common/http';
 import { CheckInComponent } from './check-in/check-in.component';
+import { SignupComponent } from './signup/signup.component';
+import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
+import { CheckEmailComponent } from './check-email/check-email.component';
 
 @NgModule({
   declarations: [
     HomepageComponent,
     SigninComponent,
-    CheckInComponent
+    CheckInComponent,
+    SignupComponent,
+    CheckEmailComponent
   ],
   providers: [
     MedicalStaffContainerModule,
@@ -25,7 +30,9 @@ import { CheckInComponent } from './check-in/check-in.component';
     HomepageComponent,
     SigninComponent,
     MaterialAngularModule,
-    CheckInComponent
+    CheckInComponent,
+    SignupComponent,
+    CheckEmailComponent
   ],
   imports: [
     HttpClientModule,
@@ -33,7 +40,8 @@ import { CheckInComponent } from './check-in/check-in.component';
     MaterialAngularModule,
     ReactiveFormsModule,
     NgxMaterialTimepickerModule,
-    SharedModule
+    SharedModule,
+    BrowserAnimationsModule,
   ]
 })
 

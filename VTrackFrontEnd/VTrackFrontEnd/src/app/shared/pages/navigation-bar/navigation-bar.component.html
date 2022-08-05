@@ -1,25 +1,29 @@
 <nav class="navbar navbar-expand-md navbar-back">
-    <button type="button" class="navbar-toggler" data-toggle="collapse" data-target="#MyNavbar">
-      <span class="navbar-toggler-icon"></span>
-    </button>
-  
-    <div class="collapse navbar-collapse" id="MyNavbar">
-      <ul class="navbar-nav ml-auto">
-  
-        <ng-container *ngIf="!roleInput">
-          <li class="nav-item">
-            <a class="nav-link" href="#">Home</a>
-          </li>
-          <li class="nav-item">
-            <a class="nav-link" href="./signin">Sign In</a>
-          </li>
-        </ng-container>
-        <li class="nav-link" *ngIf="isLoggedIn">
-          <button class="btn btn-dark" (click)="logout()">
-            Log Out
-          </button>
+  <button
+    type="button"
+    class="navbar-toggler"
+    data-toggle="collapse"
+    data-target="#MyNavbar"
+  >
+    <span class="navbar-toggler-icon"></span>
+  </button>
+
+  <div class="collapse navbar-collapse" id="MyNavbar">
+    <ul class="navbar-nav ml-auto">
+      <ng-container *ngIf="!roleInput">
+        <li class="nav-item">
+          <a class="nav-link" href="#">Home</a>
         </li>
-      </ul>
-    </div>
-  </nav>
-  
+        <li class="nav-item">
+          <a class="nav-link" href="./signup">Sign Up</a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="./signin">Sign In</a>
+        </li>
+      </ng-container>
+      <li class="nav-link" *ngIf="isLoggedIn">
+        <button class="btn btn-dark" (click)="logout()">Log Out</button>
+      </li>
+    </ul>
+  </div>
+</nav>
