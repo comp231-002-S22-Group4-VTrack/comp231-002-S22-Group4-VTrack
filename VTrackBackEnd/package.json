@@ -23,7 +23,7 @@
     "jsonwebtoken": "^8.5.1",
     "method-override": "^3.0.0",
     "mongo-seeding": "^3.7.2",
-    "mongoose": "^6.5.1",
+    "mongoose": "5.12.1",
     "morgan": "^1.10.0",
     "path": "^0.12.7",
     "swagger-jsdoc": "^6.2.4",
@@ -33,3 +33,4 @@
     "nodemon": "^2.0.19"
   }
 }
+
