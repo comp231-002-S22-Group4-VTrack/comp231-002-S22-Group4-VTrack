@@ -67,7 +67,7 @@
               <mat-option *ngFor="let medicalStaff of this.medicalStaffs$ | async"
                           [value]="medicalStaff._id">{{ medicalStaff | patientfullname}}</mat-option>
             </mat-select>
-            <mat-error>Health Practitioner is <strong>Required</strong></mat-error>
+            <mat-error>medical staff is <strong>Required</strong></mat-error>
           </mat-form-field>
         </div>
 

@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
+import { SetPasswordGuard } from './guards/set-password.guard';
 import { CheckEmailComponent } from './pages/check-email/check-email.component';
 import { HomepageComponent } from './pages/homepage/homepage.component';
+import { SetPasswordComponent } from './pages/set-password/set-password.component';
 import { SigninComponent } from './pages/signin/signin.component';
 import { SignupComponent } from './pages/signup/signup.component';
 
@@ -10,6 +12,7 @@ const routes: Routes = [
   { path: 'signin', component: SigninComponent },
   { path: 'signup', component: SignupComponent },
   { path: 'checkEmail', component: CheckEmailComponent },
+  { path: 'setPassword/:token', component: SetPasswordComponent, canActivate: [SetPasswordGuard] },
   {
     path: 'medicalStaff',
     // tslint:disable-next-line:max-line-length

@@ -32,7 +32,7 @@ export class CreateAppointmentDialogComponent implements OnInit, OnDestroy {
   public vaccines$!: Observable<Vaccine[]>;
   public patients$!: Observable<PatientList[]>;
   public clinics: Clinic[];
-  public MedicalStaffs$!: Observable<MedicalStaff[]>;
+  public medicalStaffs$!: Observable<MedicalStaff[]>;
   public modularLabels;
   public isPatient!: boolean;
   private subSink: SubSink;
@@ -86,7 +86,7 @@ export class CreateAppointmentDialogComponent implements OnInit, OnDestroy {
 
     const tempClinicId = '6060e1549107f28980861695';
     if (getUserDetails()?.clinicId) {
-      this.MedicalStaffs$ = this.medicalStaffService.getMedicalStaffsByClinicId(getUserDetails()?.clinicId);
+      this.medicalStaffs$ = this.medicalStaffService.getMedicalStaffsByClinicId(getUserDetails()?.clinicId);
     }
   }
 
@@ -106,7 +106,7 @@ export class CreateAppointmentDialogComponent implements OnInit, OnDestroy {
         clinic: [appointment.clinic._id, Validators.required],
         vaccine: [appointment.vaccine._id, Validators.required],
         vaccineDose: [appointment.vaccineDose, Validators.required],
-        MedicalStaff: [appointment.medicalStaff, Validators.required],
+        medicalStaff: [appointment.medicalStaff, Validators.required],
         appointmentDate: [new Date(appointment.preferredDate) || '', Validators.required],
         appointmentTime: [new Date(appointment.preferredTime).toISOString().match(/\d\d:\d\d/)[0] || '', Validators.required],
         reason: [appointment.reason, Validators.required],
@@ -117,7 +117,7 @@ export class CreateAppointmentDialogComponent implements OnInit, OnDestroy {
         clinic: ['', Validators.required],
         vaccine: ['', Validators.required],
         vaccineDose: ['', Validators.required],
-        MedicalStaff: ['', Validators.required],
+        medicalStaff: ['', Validators.required],
         appointmentDate: [new Date(Date.now()) || '', Validators.required],
         appointmentTime: [new Date(Date.now()).toISOString().match(/\d\d:\d\d/)[0] || '', Validators.required],
         reason: ['', Validators.required],
@@ -138,10 +138,11 @@ export class CreateAppointmentDialogComponent implements OnInit, OnDestroy {
   */
   public submitUpdatedAppointment(): void {
     console.log('submit reached');
+    console.log(this.modifyApptForm);
 
     if (this.modifyApptForm.valid) {
       let appointmentPayload;
-      const {clinic, vaccine, vaccineDose, MedicalStaff, appointmentDate, appointmentTime, patient, reason } = this.modifyApptForm.getRawValue();
+      const {clinic, vaccine, vaccineDose, medicalStaff: medicalStaff, appointmentDate, appointmentTime, patient, reason } = this.modifyApptForm.getRawValue();
       console.log('appointment details', this.modifyApptForm.value);
       if (this.isPatient){
         const preferredDate = new Date(appointmentDate.toLocaleDateString() + ' ' + appointmentTime);
@@ -172,7 +173,7 @@ export class CreateAppointmentDialogComponent implements OnInit, OnDestroy {
       else
       {
         const startTime = new Date(appointmentDate.toLocaleDateString() + ' ' + appointmentTime);
-        appointmentPayload = {...new BookAppointmentDTO(), vaccineDose, startTime, vaccineId: vaccine, medicalStaffId: MedicalStaff, patientId: patient, clinicId: '6060e1549107f28980861695', reason};
+        appointmentPayload = {...new BookAppointmentDTO(), vaccineDose, startTime, vaccineId: vaccine, medicalStaffId: medicalStaff, patientId: patient, clinicId: '6060e1549107f28980861695', reason};
         if (getUserDetails().clinicId) {
           appointmentPayload.clinicId = getUserDetails().clinicId;
         }

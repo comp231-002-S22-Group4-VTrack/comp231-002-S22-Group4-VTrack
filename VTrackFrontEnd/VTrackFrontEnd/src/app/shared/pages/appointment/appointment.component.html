@@ -1,4 +1,9 @@
 <div class="table-container">
+    <div class="row mb-2 justify-content-end" *ngIf="this.roleInput === this.role.MEDICAL_STAFF">
+    <div class="col-auto">
+      <button color="primary" mat-flat-button (click)="addNewClicked()">Add New</button>
+    </div>
+    </div>
 
     <mat-table matSort [dataSource]="dataSource" class="w-100 mat-elevation-z1">
       <mat-header-row *matHeaderRowDef="displayedColumns"></mat-header-row>

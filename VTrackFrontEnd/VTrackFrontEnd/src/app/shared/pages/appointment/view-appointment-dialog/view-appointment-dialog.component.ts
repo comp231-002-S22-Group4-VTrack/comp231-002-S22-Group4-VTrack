@@ -14,7 +14,7 @@ import {Appointment} from '../../../../models/appointment.model';
 export class ViewAppointmentDialogComponent implements OnInit {
   public displayedData: any[];
   public buttons!: any[];
-  public readonly bookedAppointmentLabels = ['patient', 'vaccine', 'when', 'contact', 'vaccineDose', 'medicalCondition', 'healthCard', 'healthPractitioner'];
+  public readonly bookedAppointmentLabels = ['patient', 'vaccine', 'when', 'contact', 'vaccineDose', 'medicalCondition', 'healthCard', 'medicalStaff'];
 
   constructor(@Inject(MAT_DIALOG_DATA) public data: Appointment,private dialog: MatDialog) {
     this.displayedData = [];

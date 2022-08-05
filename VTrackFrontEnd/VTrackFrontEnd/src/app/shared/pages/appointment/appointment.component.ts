@@ -78,6 +78,31 @@ export class AppointmentComponent implements OnInit, OnDestroy {
     this.subSink.unsubscribe();
   }
 
+  public addNewClicked() {
+    let dialogRef;
+
+    if (this.roleInput === Role.MEDICAL_STAFF) {
+      dialogRef = this.dialog.open(CreateAppointmentDialogComponent, {
+        panelClass: 'dialog-panel-class',
+        width: '650px',
+        height: 'auto',
+        disableClose: true,
+        autoFocus: false,
+        restoreFocus: false,
+        data: { role: this.roleInput } as CreateAppointmentDialogModel
+      });
+    }
+
+    if (this.roleInput === Role.PATIENT) {
+      this.router.navigate(['./patient/requestAppointment']);
+    }
+
+    // other dialog here
+    if (dialogRef) {
+      this.emitModify(dialogRef);
+    }
+  }
+
   /*
    * Emit a modify even to the parent component to refresh the table
    */

@@ -12,6 +12,7 @@ import { CheckInComponent } from './check-in/check-in.component';
 import { SignupComponent } from './signup/signup.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CheckEmailComponent } from './check-email/check-email.component';
+import { SetPasswordComponent } from './set-password/set-password.component';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,8 @@ import { CheckEmailComponent } from './check-email/check-email.component';
     SigninComponent,
     CheckInComponent,
     SignupComponent,
-    CheckEmailComponent
+    CheckEmailComponent,
+    SetPasswordComponent
   ],
   providers: [
     MedicalStaffContainerModule,
