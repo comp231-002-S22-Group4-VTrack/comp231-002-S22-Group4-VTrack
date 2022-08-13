@@ -14,6 +14,10 @@ const routes: Routes = [
   { path: 'checkEmail', component: CheckEmailComponent },
   { path: 'setPassword/:token', component: SetPasswordComponent, canActivate: [SetPasswordGuard] },
   {
+    path: 'patient',
+    loadChildren: () => import('./pages/patient-container/patient-container.module').then(m => m.PatientContainerModule)
+  },
+  {
     path: 'medicalStaff',
     // tslint:disable-next-line:max-line-length
     loadChildren: () =>

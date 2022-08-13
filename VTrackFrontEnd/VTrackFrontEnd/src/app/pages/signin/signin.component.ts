@@ -47,6 +47,10 @@ export class SigninComponent implements OnInit, OnDestroy {
             console.log('res: ', res);
             sessionStorage.setItem('signedInUser', JSON.stringify(res));
             switch (getUserDetails()?.type) {
+              case 'PATIENT': {
+                this.router.navigate(['/patient/dashboard']);
+                break;
+              }
               case 'MEDICAL_STAFF': {
                 this.router.navigate(['/medicalStaff/dashboard']);
                 break;

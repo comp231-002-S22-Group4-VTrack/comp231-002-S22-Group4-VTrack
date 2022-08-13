@@ -13,6 +13,7 @@ import { SignupComponent } from './signup/signup.component';
 import { BrowserAnimationsModule } from "@angular/platform-browser/animations";
 import { CheckEmailComponent } from './check-email/check-email.component';
 import { SetPasswordComponent } from './set-password/set-password.component';
+import { PatientContainerModule } from './patient-container/patient-container.module';
 
 @NgModule({
   declarations: [
@@ -25,6 +26,7 @@ import { SetPasswordComponent } from './set-password/set-password.component';
   ],
   providers: [
     MedicalStaffContainerModule,
+    PatientContainerModule,
     MaterialAngularModule,
     HttpClientModule,
   ],
