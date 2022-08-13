@@ -9,17 +9,16 @@ exports.sendCreatePasswordEmail = async (res, user, token) => {
     sgMail.setApiKey(process.env.SENDGRID_API_KEY);
 
     // change from local host to deployed template when deploying
-    const msg = {
-        to: user.email,
-        from: 'mikeph2808@gmail.com',
-        subject: 'Test Password Creation',
-        dynamicTemplateData: {
-            token: token,
-            firstName: user.firstName
-        },
-        templateId: process.env.CREATE_PASSWORD_TEMPLATE_ID
-    }
+     const msg = {
+       to: user.email,
+       from: "mikeph2808@gmail.com",
+       dynamicTemplateData: {
+         token: token,
+         firstName: user.firstName,
+       },
+       templateId: process.env.CREATE_PASSWORD_TEMPLATE_ID,
+     };
 
-    /** using sendgrid send method to send the email*/
-    await sgMail.send(msg);
+     /** using sendgrid send method to send the email*/
+     await sgMail.send(msg);
 }
