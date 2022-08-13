@@ -11,7 +11,6 @@ import {AppointmentService} from '../../../services/appointment/appointment.serv
 import {VaccinesService} from '../../../services/vaccines/vaccines.service';
 import {Vaccine} from '../../../models/vaccine.model';
 import * as moment from 'moment';
-import { HealthPractitioner } from 'src/app/models/healthPractitioner.model';
 import { NavigationExtras, Router } from '@angular/router';
 import {getUserDetails} from '../../../shared/Functions/getUserDetails';
 
@@ -95,7 +94,7 @@ export class RequestAppointmentComponent implements OnInit, OnDestroy {
       reason,
       vaccine,
       vaccineDose,
-      healthPractitioner: undefined,
+      medicalStaff: undefined,
     }
 
     this.subSink.add(this.appointmentService.requestAppointment(appointmentRequest).subscribe(res => {

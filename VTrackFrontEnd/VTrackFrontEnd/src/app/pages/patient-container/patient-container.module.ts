@@ -8,22 +8,26 @@ import { PatientContainerRoutingModule } from './patient-container-routing.modul
 import { HttpClientModule } from '@angular/common/http';
 import { RouterModule } from '@angular/router';
 import { PatientContainerComponent } from './patient-container.component';
+import { RequestAppointmentComponent } from './request-appointment/request-appointment.component';
+import { NgxMaterialTimepickerModule } from 'ngx-material-timepicker';
 
 
 @NgModule({
   declarations: [
     DashboardComponent,
-    PatientContainerComponent
+    PatientContainerComponent,
+    RequestAppointmentComponent,
   ],
   schemas: [CUSTOM_ELEMENTS_SCHEMA],
   imports: [
     CommonModule,
     HttpClientModule,
-    PatientContainerRoutingModule,
     MaterialAngularModule,
     SharedModule,
     RouterModule,
     ReactiveFormsModule,
+    PatientContainerRoutingModule,
+    NgxMaterialTimepickerModule,
   ]
 })
 

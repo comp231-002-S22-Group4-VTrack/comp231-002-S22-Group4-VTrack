@@ -88,7 +88,7 @@ exports.getMedicalStaffDetails = (req,res,next) => {
     const practitioner = res.locals.practitioner;
     Account.findOne({id: practitioner?._id, type: "MEDICAL_STAFF"},(err, practitioner) =>{
         if (err) {
-            return res.status(500).send({message: "There was an Error In Finding The Health Practioner."}).end();
+            return res.status(500).send({message: "There was an Error In Finding The Medical Staff."}).end();
         }
         return res.status(200).send(medicalStaffs).end();
     }).select("-password");
