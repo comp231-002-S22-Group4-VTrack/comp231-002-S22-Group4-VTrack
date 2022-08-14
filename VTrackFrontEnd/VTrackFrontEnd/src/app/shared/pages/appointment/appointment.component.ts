@@ -27,6 +27,7 @@ import { DeclineRequestedAppointmentDialogComponent } from 'src/app/pages/medica
 @Component({
   selector: 'app-appointment',
   templateUrl: './appointment.component.html',
+  styleUrls: ['./appointment.component.scss'],
 })
 export class AppointmentComponent implements OnInit, OnDestroy {
   @ViewChild(MatSort) public sort: MatSort;
