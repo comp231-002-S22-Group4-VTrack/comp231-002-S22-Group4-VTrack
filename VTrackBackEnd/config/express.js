@@ -75,9 +75,6 @@ module.exports = function () {
         {
           url: "http://localhost:3000",
         },
-        {
-          url: "https://comp231-002-s22-group4-vt-rack.vercel.app",
-        },
       ],
     },
     apis: ["../app/routes/*.js"],
