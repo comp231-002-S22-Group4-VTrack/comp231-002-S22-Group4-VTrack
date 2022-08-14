@@ -64,20 +64,23 @@ module.exports = function () {
   );
 
   const options = {
-    definition : {
+    definition: {
       openapi: "3.0.0",
       info: {
         title: "VaccTrax Api",
         version: "1.0.0",
-        description: "Rest Api's for VaccTrax Application."
+        description: "Rest Api's for VaccTrax Application.",
       },
       servers: [
         {
-          url: "http://localhost:3000"
-        }
-      ]
+          url: "http://localhost:3000",
+        },
+        {
+          url: "https://comp231-002-s22-group4-vt-rack.vercel.app",
+        },
+      ],
     },
-    apis: ["../app/routes/*.js"]
+    apis: ["../app/routes/*.js"],
   };
 
   // Set the application view engine and 'views' folder
@@ -100,3 +103,4 @@ module.exports = function () {
   // Return the Express application instance
   return app;
 };
+
